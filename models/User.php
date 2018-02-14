@@ -6,8 +6,7 @@ use Yii;
 use yii\web\IdentityInterface;
 
 /**
- * This is the model class for table "user".
- *
+ * Класс для работы с пользователями (полученя и отправки данных)
  * @property int $id
  * @property string $name
  * @property string $email

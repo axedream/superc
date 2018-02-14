@@ -65,7 +65,7 @@ class Login extends Model
 
     /**
      * Функция логина пользователя
-     * @return void
+     * @return string
      */
     public function login(){
         $old_user = User::findOne(['email'=>$this->email]);
@@ -74,11 +74,12 @@ class Login extends Model
             $user->isAuth=0;
             $user->name = $this->generateUserName();
             $user->email = $this->email;
-            $user->key = $this->generateAuthKey();
+            $key = $user->key = $this->generateAuthKey();
             $user->save();
+
         } else {
             $old_user->isAuth=0;
-            $old_user->key = $this->generateAuthKey();
+            $key = $old_user->key = $this->generateAuthKey();
             try {
                 $old_user->update(false);
             } catch (StaleObjectException $e) {
@@ -86,5 +87,6 @@ class Login extends Model
                 echo 'Ошибка! '.$e->getMessage();
             }
         }
+        return $key;
     }
 }

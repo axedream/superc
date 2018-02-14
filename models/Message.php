@@ -6,6 +6,7 @@ use yii\base\Model;
 
 
 /**
+ * Класс отвечающий за сообщения
  * @property array message
  */
 class Message extends Model {
